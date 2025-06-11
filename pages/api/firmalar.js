@@ -5,8 +5,13 @@ export default async function handler(req, res) {
   const { urun } = req.query;
 
   // 1. TİM'den Türk firmalarını çek
-  const { data } = await axios.get(`https://www.tim.org.tr/ihracatci-ara?keyword=${urun}`);
-  const $ = cheerio.load(data);
+  // TİM yerine alternatif kaynak
+const firmalar = [{
+  ad: "Örnek Firma",
+  sektor: "Makina",
+  ihracat: "1.2M €"
+}];
+
 
   const firmalar = [];
   $('.exporter-card').each((i, el) => {
